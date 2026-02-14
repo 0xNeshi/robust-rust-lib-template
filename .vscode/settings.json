@@ -1,0 +1,6 @@
+{
+  "rust-analyzer.cargo.features": [],
+  // cargo +nightly fmt supports the latest formatting features, custom styling
+  // options not yet available on stable, or improved import formatting
+  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+}
