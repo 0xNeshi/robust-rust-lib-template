@@ -183,7 +183,9 @@ when you create a new project from this template.
 
 ### `.vscode/`
 
-- Optional editor configuration. Keep, adjust, or remove.
+- Optional editor configuration.
+- E.g. configures cargo formatter to always run in `nightly` to access latest formatting features.
+- Keep, adjust, or remove.
 
 ## Notes for existing projects
 
