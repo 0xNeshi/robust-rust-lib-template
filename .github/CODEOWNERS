@@ -1,2 +1,4 @@
-* {{code-owner}}
-SECURITY.md {{code-owner-1}} @OpenZeppelin/product-security
+# IMPORTANT: REPLACE THE BELOW HANDLE AND THE PLACEHOLDERS FURTHER BELOW WITH HANDLES OF THE ACTUAL CODE OWNERS!!!
+* 0xNeshi
+
+# SECURITY.md {{code-owner-1}} {{code-owner-2}} @OpenZeppelin/product-security
