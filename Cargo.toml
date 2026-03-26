@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 authors = ["OpenZeppelin"]
 publish = true
-description = "project-description"
+description = "project description"
 categories = [
     # https://doc.rust-lang.org/cargo/reference/manifest.html#the-categories-field
 ]

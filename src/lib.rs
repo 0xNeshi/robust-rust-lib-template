@@ -1,6 +1,7 @@
 //! Module-level documentation.
 
 /// Documentation comments.
+#[must_use]
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
