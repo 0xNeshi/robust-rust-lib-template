@@ -21,7 +21,8 @@ You can instantiate a new crate by using GitHub’s **“Use this template”** 
 
 After creation:
 
-- **Rename placeholders** in `Cargo.toml` and other files (see
+- **Rename placeholders** in `Cargo.toml` and the repository docs/templates (see
+  [First-time setup checklist](#first-time-setup-checklist) and
   [File-by-file customization](#file-by-file-customization)).
 - **Decide your MSRV policy** and align it across `rust-toolchain.toml`,
   `Cargo.toml` (edition), and CI.
@@ -29,11 +30,46 @@ After creation:
 
 ### 2) Clone and start coding
 
-Typical dev loop:
+## First-time setup checklist
+
+If this is your first time creating a repository from this template, use this
+checklist before you start writing code:
+
+1. **Update crate/package metadata in `Cargo.toml`**
+   - Replace `name` with your crate name.
+   - Replace `description` with a real one-line summary.
+   - Replace `repository` with your repository URL.
+   - Replace `authors` with the actual maintainers, if you use that field.
+   - Replace `license` if you are not shipping MIT.
+2. **Choose which license files to keep**
+   - Keep only the license file(s) that apply to your project.
+   - Make sure the `Cargo.toml` `license` field matches the files you ship.
+3. **Replace organization/project-specific names and links**
+   - Search the repository for the template values and replace them with your
+     own project details.
+   - At minimum, search for:
+     - `rust-project-template`
+     - `OpenZeppelin`
+     - `openzeppelin`
+     - `0xNeshi`
+     - `project description`
+4. **Update maintainer/contact information**
+   - Set the correct owners in `.github/CODEOWNERS`.
+   - Update security reporting instructions in `SECURITY.md`.
+   - Update support/community links in GitHub issue templates if you use them.
+5. **Review CI and toolchain policy**
+   - Set your MSRV in workflow files.
+   - Confirm `edition` is compatible with your MSRV.
+   - Decide whether `rust-toolchain.toml` should stay pinned.
+6. **Trim anything you do not use**
+   - Remove workflows you do not need (`nostd.yml`, `safety.yml`, etc.).
+   - Remove example/bench scaffolding if it is not useful for your crate.
+
+After the checklist, run a sanity check:
 
 ```bash
 cargo test --all-features --all-targets
-cargo fmt
+cargo +nightly fmt --check
 cargo clippy --all-features --all-targets
 ```
 
@@ -77,8 +113,9 @@ you should **make these consistent** for your crate.
 
 ## File-by-file customization
 
-This section is intentionally brief: it’s a checklist of what you should update
-when you create a new project from this template.
+This section is a concrete map of which files usually need project-specific
+names, links, maintainers, and policy choices changed after you create a new
+repository from this template.
 
 ### `Cargo.toml`
 
@@ -88,6 +125,7 @@ when you create a new project from this template.
   - `repository`
   - `license`
   - `authors` (if applicable)
+  - `keywords` and `categories` once you know how you want to publish the crate
 - **Review**:
   - `edition` (must align with your MSRV)
   - `lints.*` (tune warning levels for your team)
@@ -115,6 +153,7 @@ when you create a new project from this template.
   - Tests on stable/beta, minimal dependency versions, OS matrix, coverage.
 - `scheduled.yml`:
   - Nightly “rolling” checks and “updated dependencies” checks.
+  - Review repository-specific job names, notifications, and assumptions.
 - `safety.yml`:
   - Optional deeper checks (sanitizers, Miri, Loom). Remove if irrelevant.
   - Note: this workflow installs system packages; keep only if you want it.
@@ -135,14 +174,15 @@ when you create a new project from this template.
 ### `.github/ISSUE_TEMPLATE/*` and `.github/pull_request_template.md`
 
 - Adjust wording to your project.
-- Consider adding a PR checklist item that ensures the license is not a
-  placeholder (if you use placeholder licenses).
+- Replace support links, repository links, and organization names.
 
 ### `rustfmt.toml` and `clippy.toml`
 
 - Tune formatting and clippy settings to team preferences.
 - `rustfmt.toml` includes settings that may require nightly rustfmt depending
   on your toolchain; adjust if you need strict stable-only formatting.
+- `clippy.toml` may include organization-specific identifiers; review
+  `doc-valid-idents`.
 
 ### `codecov.yml` and `.github/codecov.yml`
 
@@ -156,12 +196,15 @@ when you create a new project from this template.
 
 ### `SECURITY.md`
 
-- Update project name/slug placeholders.
-- Ensure the reporting mechanism and links point to your repository.
+- Update the project name, organization name, and repository slug.
+- Replace the vulnerability reporting contact/channel with your own.
+- Ensure the advisory submission link points to your repository.
+- Review any legal text inherited from the template owner.
 
 ### `CODE_OF_CONDUCT.md`
 
 - Keep as-is, or replace with your organization’s standard CoC.
+- If you keep this file, review the enforcement/reporting contact details.
 
 ### `CONTRIBUTING.md`
 
@@ -174,6 +217,7 @@ when you create a new project from this template.
 - Choose the license(s) that apply to your project.
 - Ensure `Cargo.toml` `license = "..."` matches what you ship.
 - Remove any licenses you do not intend to ship.
+- If your chosen license requires copyright holder updates, make those changes.
 
 ### `src/lib.rs`
 
@@ -186,6 +230,19 @@ when you create a new project from this template.
 - Optional editor configuration.
 - E.g. configures cargo formatter to always run in `nightly` to access latest formatting features.
 - Keep, adjust, or remove.
+
+## Recommended repository-wide search
+
+Before your first release, do one repository-wide search for template values and
+verify each remaining match is intentional.
+
+Suggested search terms:
+
+- `rust-project-template`
+- `OpenZeppelin`
+- `openzeppelin`
+- `0xNeshi`
+- `project description`
 
 ## Notes for existing projects
 
