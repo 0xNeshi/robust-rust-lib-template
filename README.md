@@ -129,7 +129,7 @@ when you create a new project from this template.
 
 ### `.github/CODEOWNERS`
 
-- Replace `{{code-owner}}` placeholders with the correct GitHub handles/teams.
+- Add correct GitHub handles/teams.
 - Ensure `SECURITY.md` has the right owners.
 
 ### `.github/ISSUE_TEMPLATE/*` and `.github/pull_request_template.md`
