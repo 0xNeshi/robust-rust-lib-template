@@ -270,7 +270,7 @@ warnings or errors:
 
 ## Pull requests
 
-Pull requests are squash-merged to keep the `main` branch history clean. The
+Pull requests are squash-merged to keep the `master` branch history clean. The
 title of the pull request becomes the commit message, which should follow
 [Semantic versioning].
 
