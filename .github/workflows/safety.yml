@@ -5,16 +5,19 @@
 # - leak sanitizer - detects memory leaks
 # - loom - Permutation testing for concurrent code https://crates.io/crates/loom
 # See check.yml for information about how the concurrency cancellation and workflow triggering works
+name: safety
 permissions:
   contents: read
+
 on:
   push:
     branches: [main]
   pull_request:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
-name: safety
+
 jobs:
   sanitizers:
     runs-on: ubuntu-latest
