@@ -27,18 +27,18 @@ concurrency:
 jobs:
   fmt:
     runs-on: ubuntu-latest
-    name: stable / fmt
+    name: nightly / fmt
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
         with:
           submodules: true
-      - name: Install stable
+      - name: Install nightly Rust
         uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # branch=master
         with:
-          toolchain: stable
+          toolchain: nightly
           components: rustfmt
-      - name: cargo fmt --check
-        run: cargo fmt --check
+      - name: cargo fmt --all --check
+        run: cargo fmt --all --check
   clippy:
     runs-on: ubuntu-latest
     name: ${{ matrix.toolchain }} / clippy
