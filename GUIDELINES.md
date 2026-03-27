@@ -265,7 +265,7 @@ If you make documentation changes, you may want to check whether there are any
 warnings or errors:
 
 ```shell
-    cargo doc --all-features
+    RUSTDOCFLAGS="--cfg docsrs" cargo doc --no-deps --all-features
 ```
 
 ## Pull requests
