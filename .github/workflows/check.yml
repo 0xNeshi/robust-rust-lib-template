@@ -64,6 +64,7 @@ jobs:
         with:
           reporter: 'github-pr-check'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          clippy_flags: --all-targets --all-features -- -D warnings -D clippy::all -D clippy::pedantic
   semver:
     runs-on: ubuntu-latest
     name: semver
