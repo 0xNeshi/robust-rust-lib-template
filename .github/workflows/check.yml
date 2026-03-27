@@ -66,6 +66,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           clippy_flags: --all-targets --all-features -- -D warnings -D clippy::all -D clippy::pedantic
   semver:
+    # REMOVE THE `if` CHECK AFTER FIRST PUBLISH TO crates.io
+    if: ${{ false }}
     runs-on: ubuntu-latest
     name: semver
     steps:
