@@ -1,14 +1,20 @@
 # This workflow checks whether the library is able to run without the std library (e.g., embedded).
-# This entire file should be removed if this crate does not support no-std. See check.yml for
-# information about how the concurrency cancellation and workflow triggering works
+# It is disabled by default. To enable it for a no_std project, remove the `workflow_dispatch`
+# trigger below and uncomment the following triggers:
+#   push:
+#     branches: [master]
+#   pull_request:
+# Also ensure the crate declares `#![no_std]` (or `#![cfg_attr(not(feature = "std"), no_std)]`)
+# and that `--no-default-features` disables the std feature.
 name: no-std
 permissions:
   contents: read
 
 on:
-  push:
-    branches: [master]
-  pull_request:
+  # push:
+  #   branches: [master]
+  # pull_request: 
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
