@@ -161,9 +161,11 @@ jobs:
       - name: Record Rust version
         run: echo "RUST=$(rustc --version)" >> "$GITHUB_ENV"
       - name: Upload to codecov.io
-        if: ${{ secrets.CODECOV_TOKEN != '' }}
+        if: env.CODECOV_TOKEN != ''
         uses: codecov/codecov-action@1af58845a975a7985b0beb0cbe6fbbb71a41dbad # tag=v5.5.3
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
           env_vars: OS,RUST
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
