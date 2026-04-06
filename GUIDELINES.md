@@ -265,12 +265,12 @@ If you make documentation changes, you may want to check whether there are any
 warnings or errors:
 
 ```shell
-    cargo doc --all-features
+    RUSTDOCFLAGS="--cfg docsrs" cargo doc --no-deps --all-features
 ```
 
 ## Pull requests
 
-Pull requests are squash-merged to keep the `main` branch history clean. The
+Pull requests are squash-merged to keep the `master` branch history clean. The
 title of the pull request becomes the commit message, which should follow
 [Semantic versioning].
 
