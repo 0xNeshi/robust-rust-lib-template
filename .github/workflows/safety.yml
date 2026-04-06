@@ -11,7 +11,7 @@ permissions:
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
 
 concurrency:
@@ -51,12 +51,14 @@ jobs:
         env:
           ASAN_OPTIONS: "detect_odr_violation=0:detect_leaks=0"
           RUSTFLAGS: "-Z sanitizer=address"
+          RUSTUP_TOOLCHAIN: nightly
       - name: cargo test -Zsanitizer=leak
         if: always()
         run: cargo test --all-features --target x86_64-unknown-linux-gnu
         env:
           LSAN_OPTIONS: "suppressions=lsan-suppressions.txt"
           RUSTFLAGS: "-Z sanitizer=leak"
+          RUSTUP_TOOLCHAIN: nightly
   miri:
     runs-on: ubuntu-latest
     steps:
@@ -74,18 +76,21 @@ jobs:
         run: cargo miri test
         env:
           MIRIFLAGS: ""
-  loom:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
-        with:
-          submodules: true
-      - name: Install stable
-        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # branch=master
-        with:
-          toolchain: stable
-      - name: cargo test --test loom
-        run: cargo test --release --test loom
-        env:
-          LOOM_MAX_PREEMPTIONS: 2
-          RUSTFLAGS: "--cfg loom"
+          RUSTUP_TOOLCHAIN: ${{ env.NIGHTLY }}
+  # Loom permutation testing for concurrent code. Enable this job if the crate
+  # uses loom (https://crates.io/crates/loom) by uncommenting the lines below.
+  # loom:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
+  #       with:
+  #         submodules: true
+  #     - name: Install stable
+  #       uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # branch=master
+  #       with:
+  #         toolchain: stable
+  #     - name: cargo test --test loom
+  #       run: cargo test --release --test loom
+  #       env:
+  #         LOOM_MAX_PREEMPTIONS: 2
+  #         RUSTFLAGS: "--cfg loom"

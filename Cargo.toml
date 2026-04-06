@@ -1,26 +1,20 @@
 [package]
-name = "{{project-slug}}"
+name = "rust-project-template"
 version = "0.1.0"
 edition = "2024"
 authors = ["OpenZeppelin"]
 publish = true
-description = "{{project-description}}"
+description = "project description"
+rust-version = "1.85.0"
 categories = [
     # https://doc.rust-lang.org/cargo/reference/manifest.html#the-categories-field
 ]
 keywords = [
     # https://doc.rust-lang.org/cargo/reference/manifest.html#the-keywords-field
 ]
-license = "{{license}}"
-repository = "https://github.com/OpenZeppelin/{{project-slug}}"
-exclude = [
-    ".github/",
-    ".vscode/",
-    ".config/",
-    ".cargo/",
-    "benches/",
-    "tests/",
-]
+license = "MIT"
+repository = "https://github.com/OpenZeppelin/rust-project-template"
+exclude = [".github/", ".vscode/", ".config/", ".cargo/", "benches/", "tests/"]
 
 [dependencies]
 
