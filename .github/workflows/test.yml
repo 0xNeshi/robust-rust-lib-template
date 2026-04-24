@@ -141,6 +141,10 @@ jobs:
     runs-on: ubuntu-latest
     name: ubuntu / stable / coverage
     steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # tag=v2.19.0
+        with:
+          egress-policy: audit
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
         with:
           submodules: true
