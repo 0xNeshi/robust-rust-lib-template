@@ -1,4 +1,4 @@
 [files]
-extend-exclude = ["CHANGELOG.md", "*.lock"]
+extend-exclude = ["*.lock"]
 
 [default.extend-words]
