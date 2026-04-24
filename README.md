@@ -80,6 +80,7 @@ cargo clippy --all-features --all-targets
 The included workflows aim to catch common library pitfalls early:
 
 - **Formatting** (`cargo fmt --check`)
+- **Spell-check** of source and docs (via [`typos`](https://github.com/crate-ci/typos))
 - **Clippy** on **stable** and **beta** (early warning on new lints)
 - **Docs build** (runs on nightly using `cargo docs-rs`)
 - **Feature combination testing** via `cargo hack --feature-powerset check`

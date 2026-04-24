@@ -5,6 +5,7 @@
 # - doc: checks that the code can be documented without errors
 # - hack: check combinations of feature flags
 # - msrv: check that the msrv specified in the crate is correct
+# - typos: checks for common spelling mistakes in source and docs
 name: check
 permissions:
   contents: read
@@ -39,6 +40,15 @@ jobs:
           components: rustfmt
       - name: cargo fmt --all --check
         run: cargo +nightly fmt --all --check
+  typos:
+    runs-on: ubuntu-latest
+    name: typos
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
+        with:
+          submodules: true
+      - name: typos
+        uses: crate-ci/typos@cf5f1c29a8ac336af8568821ec41919923b05a83 # tag=v1.45.1
   clippy:
     runs-on: ubuntu-latest
     name: ${{ matrix.toolchain }} / clippy
