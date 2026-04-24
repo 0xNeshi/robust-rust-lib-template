@@ -15,7 +15,17 @@ Establishing a Quality Baseline”**:
 
 ## How to use this template
 
-### 1) Create a new repository from it (GitHub template)
+### 1) Automated setup with Claude Code (recommended)
+
+This repo ships with a Claude Code skill at
+[.claude/skills/rust-template-init/](.claude/skills/rust-template-init/SKILL.md)
+that automates the entire first-time setup checklist below — metadata,
+license, MSRV, workflow trimming, starter-content reset, and the initial
+commit.
+
+### 2) Manual setup
+
+#### 1) Create a new repository from it (GitHub template)
 
 You can instantiate a new crate by using GitHub’s **“Use this template”** button.
 
@@ -28,7 +38,36 @@ After creation:
   `Cargo.toml` (edition), and CI.
 - **Pick a license** and ensure your `Cargo.toml` `license` field matches.
 
-### 2) Clone and start coding
+#### 2) Clone and start coding
+
+**Quickstart:**
+
+```bash
+git clone --depth 1 https://github.com/OpenZeppelin/rust-project-template.git my-crate
+cd my-crate
+rm -rf .git && git init -b main
+claude  # then prompt: "init a new rust crate from this template"
+```
+
+The skill runs as a three-phase wizard:
+
+1. **Metadata** — one question at a time, with smart defaults and
+   suggestions (crate name, owner, repo URL, description, authors, MSRV,
+   license, keywords, categories, CODEOWNERS, security contact).
+   Each answer is applied and committed immediately, so you can
+   `back` / `skip` / `finish` / `abort` at any point.
+2. **Project type** — batched prompt for `std` vs `no_std`, safety CI,
+   crates.io publishing, Codecov, benches, examples. Preview shown
+   before destructive changes.
+3. **Finalize** — resets `src/lib.rs`, `CHANGELOG.md`, and wipes the
+   README down to a single `# <crate-name>` heading. Runs
+   fmt/clippy/test. Offers the initial commit.
+
+A `.rust-template-init.json` journal in the repo root lets you resume an
+interrupted run. It is deleted on successful completion.
+
+If you prefer to do it by hand, the [First-time setup checklist](#first-time-setup-checklist)
+below is the same list of changes in manual form.
 
 ## First-time setup checklist
 

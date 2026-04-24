@@ -5,3 +5,6 @@
 # code coverage
 lcov.info
 lcov.infos
+
+# rust-template-init skill resume journal
+.rust-template-init.json
