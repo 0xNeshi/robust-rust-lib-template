@@ -1,4 +1,4 @@
 [files]
-extend-exclude = ["*.lock"]
+extend-exclude = []
 
 [default.extend-words]
