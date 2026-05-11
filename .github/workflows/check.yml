@@ -48,7 +48,7 @@ jobs:
         with:
           submodules: true
       - name: typos
-        uses: crate-ci/typos@bbaefadf97b0ec5fdc942684b647f1a6ab250274 # tag=v1.46.0
+        uses: crate-ci/typos@5374cbf686e897b15713110e233094e2874de7ef # tag=v1.46.1
   clippy:
     runs-on: ubuntu-latest
     name: ${{ matrix.toolchain }} / clippy
