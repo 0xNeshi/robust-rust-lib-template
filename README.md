@@ -1,5 +1,25 @@
 # Robust Rust Library Template
 
+## Quickstart
+
+**With a coding agent (Claude Code, Codex, Cursor, …)** — paste this prompt:
+
+> Clone https://github.com/OpenZeppelin/rust-project-template.git (ask me for
+> the target directory name first), `cd` into it, then read and follow
+> `INIT.md` to initialize the project.
+
+**With the GitHub CLI** — one-liner:
+
+```bash
+gh repo create my-crate --template OpenZeppelin/rust-project-template --private --clone && cd my-crate
+```
+
+Then open your agent and ask it to follow [`INIT.md`](INIT.md), or in Claude
+Code run `/rust-template-init`. Prefer manual setup? See
+[How to use this template](#how-to-use-this-template) below.
+
+---
+
 This repository is a **Rust library project template** intended to establish a
 **quality baseline** for new Rust crates (and to act as a reference checklist
 for improving existing ones).
@@ -15,13 +35,12 @@ Establishing a Quality Baseline”**:
 
 ## How to use this template
 
-### 1) Automated setup with Claude Code (recommended)
+### 1) Automated setup with a coding agent (recommended)
 
-This repo ships with a Claude Code skill at
-[.claude/skills/rust-template-init/](.claude/skills/rust-template-init/SKILL.md)
-that automates the entire first-time setup checklist below — metadata,
-license, MSRV, workflow trimming, starter-content reset, and the initial
-commit.
+See the [Quickstart](#quickstart) at the top. The agent follows
+[`INIT.md`](INIT.md), which automates the entire first-time setup checklist
+below — metadata, license, MSRV, workflow trimming, starter-content reset,
+and the initial commit.
 
 ### 2) Manual setup
 
@@ -46,7 +65,7 @@ After creation:
 git clone --depth 1 https://github.com/OpenZeppelin/rust-project-template.git my-crate
 cd my-crate
 rm -rf .git && git init -b main
-claude  # then prompt: "init a new rust crate from this template"
+claude  # then prompt: "follow INIT.md"
 ```
 
 The skill runs as a three-phase wizard:
